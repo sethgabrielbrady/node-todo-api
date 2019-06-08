@@ -9,17 +9,27 @@ router.get('/', (req, res) => res.send('Hello World!'));
 
 router.route('/todos')
   .get((req, res) => {
-     Todo.all(function(data){
-       console.log("Retrieving all Todos");
-       res.json(data);
-     });
+    Todo.all(function(data){
+      console.log('Retrieving all Todos');
+      res.json(data);
+    });
+
   })
   .post((req, res) => {
     Todo.createDocument(req.body, function(data){
-      console.log(`Todo created with id ${data._id}`);
+      // console.log(`Todo created with id ${data._id}`);
       res.json(data);
     });
   });
+
+router.route('/todos/:todo_id')
+  .put((req, res) => {
+    Todo.updateDocument(req.params.todo_id, req.body, function(data){
+      console.log(`Todo id ${data._id} updated!`);
+      res.json(data);
+    });
+  });
+
 
 app.use('/', router);
 
