@@ -25,7 +25,7 @@ todoSchema.statics.createDocument = function(params, callback){
       callback(todo);
     }
   )
-}
+};
 
 todoSchema.statics.updateDocument = function(id, params, callback){
   return Todo.findOneAndUpdate({ _id: id },
