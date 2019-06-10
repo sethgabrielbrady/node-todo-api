@@ -13,9 +13,11 @@ db.once('open', function() {
   console.log('Connected to mongodb!');
 });
 
+
+// this seems to be the root of the error
 const todoSchema = new mongoose.Schema({
   text: String,
-  done: Boolean
+  done: Boolean,
 });
 
 todoSchema.statics.createDocument = function(params, callback){
